@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+    <title>Scale Practice</title>
+</head>
+
+<body>
+    <h1 class="is-size-2 has-text-weight-bold has-text-centered">Scale Practice- A modal approach to playing</h1>
+    <div class="columns">
+        <div class="column is-1"></div>
+        <div class="column">
+            <p class=is-size-4> Using the buttons below, you can practice the different modes associated with the C
+                Major scale.
+                Clicking
+                the play button will play the scale for you. Next, you can have some fun by playing along with any of
+                the
+                available backing tracks. Lastly, check out some music that makes use of each scale. Hope you
+                enjoy your
+                practice!</p>
+        </div>
+        <div class="column is-1"></div>
+    </div>
+
+    <div class="columns">
+        <div class="column level-item has-text-centered">
+            <a class="button is-primary" id="CBtn">
+                C Major
+            </a>
+            <a class="button is-primary" id="DBtn">
+                D Dorian
+            </a>
+            <a class="button is-primary" id="EBtn">
+                E Phrygian
+            </a>
+            <a class="button is-primary" id="FBtn">
+                F Lydian
+            </a>
+            <a class="button is-primary" id="GBtn">
+                G Mixolydian
+            </a>
+            <a class="button is-primary" id="ABtn">
+                A Aeolian
+            </a>
+            <a class="button is-primary" id="BBtn">
+                B Locrian
+            </a>
+        </div>
+    </div>
+    <div id="appendKey" class="is-size-4 has-text-centered"></div>
+    <div id="appendSteps" class="is-size-4 has-text-centered"></div>
+    <div id="appendIntervals" class="is-size-4 has-text-centered"></div>
+    <div class="card-content level-item has-text-centered">
+        <figure class="image" id="figureImage"></figure>
+    </div>
+    <h3 id="backingText" class="is-size-5 level-item has-text-centered"></h3>
+    <section id="backing-track" class="level-item has-text-centered">
+        <!-- <iframe src="https://www.youtube.com/embed/aTJiRgAW2cE" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe> -->
+    </section>
+    <h4 id="popularText" class="is-size-5 level-item has-text-centered"></h4>
+    <section id="popular-song" class="level-item has-text-centered">
+        <!-- <iframe src="https://www.youtube.com/embed/QxTBtHsh408" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe> -->
+    </section>
+    <div class="is-size-4 has-text-weight-bold has-text-centered"> Hours spent practicing:
+    </div>
+    <div class="is-size-4 has-text-weight-bold has-text-centered">
+        <span id="counter"></span>
+        <p class="buttons level-item has-text-centered">
+            <button id="downBtn" class="button is-small is-danger">
+                <span class="icon">
+                    <i class="fas fa-arrow-down fa-lg"></i>
+                </span>
+            </button>
+            <button id="upBtn" class="button is-small is-danger">
+                <span class="icon">
+                    <i class="fas fa-arrow-up fa-lg"></i>
+                </span>
+            </button>
+            <button id="clearBtn" class="button is-small is-danger">
+                <span class="icon">
+                    <i class="fas fa-eraser"></i>
+                </span>
+            </button>
+        </p>
+    </div>
+    <script src="script.js">
+    </script>
+</body>
+
+</html>

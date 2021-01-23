@@ -1,0 +1,8 @@
+.is-horizontal-center {
+  justify-content: center;
+}
+
+.upBtn {
+  width: 100%;
+  min-height: 100%;
+}

@@ -69,29 +69,27 @@ var upButton = document.querySelector("#upBtn");
 var downButton = document.querySelector("#downBtn");
 var count = localStorage.getItem("count");
 
-function pageLoad() {
-    counter.textContent = count;
-}
-pageLoad();
-
+$(window).on('load', function () {
+    count = parseInt(localStorage.getItem("count"));
+    counter.innerHTML = count;
+});
 
 upButton.addEventListener("click", function () {
     count += .5;
-    counter.textContent = count;
+    counter.innerHTML = count;
 
     localStorage.setItem("count", count);
 });
 downButton.addEventListener("click", function () {
-    count -= .5;
-    counter.textContent = count;
+    count += .5;
+    counter.innerHTML = count;
 
     localStorage.setItem("count", count);
 });
 document.getElementById("clearBtn").onclick = function () {
     localStorage.clear();
     count = 0;
-    document.getElementById("counter").textContent = "";
-    counter.append(count);
+    counter.innerHTML = count;
 }
 //Display function
 function displayEl(index) {

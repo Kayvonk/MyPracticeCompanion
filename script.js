@@ -70,7 +70,7 @@ var downButton = document.querySelector("#downBtn");
 var count = localStorage.getItem("count");
 
 $(window).on('load', function () {
-    count = parseInt(localStorage.getItem("count"));
+    count = parseInt(localStorage.getItem("count") || 0);
     counter.innerHTML = count;
 });
 

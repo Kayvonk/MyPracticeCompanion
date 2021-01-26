@@ -131,3 +131,51 @@ document.getElementById("BBtn").onclick = function () {
     document.getElementById('figureImage').innerHTML = "";
     displayEl(6);
 }
+// embedded video and clearing after a different button click
+
+
+document.getElementById('CBtn').addEventListener('click', function(){
+	console.log('works');
+	showVideo('https://www.youtube.com/embed/QxTBtHsh408')
+})
+document.getElementById('DBtn').addEventListener('click', function(){
+	console.log('works');
+	showVideo('https://www.youtube.com/embed/zz8frWcmthA')
+})
+document.getElementById('EBtn').addEventListener('click', function(){
+	console.log('works');
+	showVideo('https://www.youtube.com/embed/nXrygUZPrII')
+})
+document.getElementById('FBtn').addEventListener('click', function(){
+	console.log('works');
+	showVideo('https://www.youtube.com/embed/OnxkfLe4G74')
+})
+document.getElementById('GBtn').addEventListener('click', function(){
+	console.log('works');
+	showVideo('https://www.youtube.com/embed/-488UORrfJ0')
+})
+document.getElementById('ABtn').addEventListener('click', function(){
+	console.log('works');
+	showVideo('https://www.youtube.com/embed/jvRumkRr6Nc')
+})
+document.getElementById('BBtn').addEventListener('click', function(){
+	console.log('works');
+	showVideo('https://www.youtube.com/embed/vjAIZ9wQAnc"')
+})
+
+function showVideo(srcValue){
+	//clear container element to get ready for new video
+	document.getElementById('popular-song').innerHTML = ''
+	// creates iframe
+	let myVideo = document.createElement('iframe')
+	// create a src attribute on the iframe
+	myVideo.setAttribute('src', srcValue)
+	myVideo.setAttribute('height', '315')
+	myVideo.setAttribute('width', '560')
+	myVideo.setAttribute('frameborder', '0')
+	myVideo.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture')
+	myVideo.setAttribute('allowfullscreen', '')
+	console.log(myVideo);
+	// Inject dynamically created video into the DOM container
+	document.getElementById('popular-song').appendChild(myVideo)
+}

@@ -11,45 +11,36 @@
 </head>
 
 <body>
-    <h1 class="is-size-2 has-text-weight-bold has-text-centered">Scale Practice- A modal approach to playing</h1>
+    <nav class="navbar" role="navigation" aria-label="dropdown navigation">
+        <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+                Resources
+            </a>
+
+            <div class="navbar-dropdown">
+                <a id="scalesTab" class="navbar-item">
+                    Scale Practice
+                </a>
+                <a id="bluesTab" class="navbar-item">
+                    Learn the Blues
+                </a>
+                <hr class="navbar-divider">
+                <div class="navbar-item">
+                    Version 0.9.1
+                </div>
+            </div>
+        </div>
+    </nav>
+    <h1 id="heading" class="is-size-2 has-text-weight-bold has-text-centered"></h1>
     <div class="columns">
         <div class="column is-1"></div>
         <div class="column">
-            <p class=is-size-4> Using the buttons below, you can practice the different modes associated with the C
-                Major scale.
-                Clicking
-                the play button will play the scale for you. Next, you can have some fun by playing along with any of
-                the
-                available backing tracks. Lastly, check out some music that makes use of each scale. Hope you
-                enjoy your
-                practice!</p>
+            <p id="instructions" class=is-size-4></p>
         </div>
         <div class="column is-1"></div>
     </div>
-
-    <div class="columns">
-        <div class="column level-item has-text-centered">
-            <a class="button is-primary" id="CBtn">
-                C Major
-            </a>
-            <a class="button is-primary" id="DBtn">
-                D Dorian
-            </a>
-            <a class="button is-primary" id="EBtn">
-                E Phrygian
-            </a>
-            <a class="button is-primary" id="FBtn">
-                F Lydian
-            </a>
-            <a class="button is-primary" id="GBtn">
-                G Mixolydian
-            </a>
-            <a class="button is-primary" id="ABtn">
-                A Aeolian
-            </a>
-            <a class="button is-primary" id="BBtn">
-                B Locrian
-            </a>
+    <div id="buttons" class="columns level-item has-text-centered">
+        <div id="btnCol" class="field has-addons is-centered">
         </div>
     </div>
     <div id="appendKey" class="is-size-4 has-text-centered"></div>
@@ -58,17 +49,18 @@
     <div class="card-content level-item has-text-centered">
         <figure class="image" id="figureImage"></figure>
     </div>
+    <div class="columns">
+        <div class="column is-2"></div>
+        <div class="column">
+            <figure class="bluesChart" id="bluesChart"></figure>
+        </div>
+        <div class="column is-2"></div>
+    </div>
     <h3 id="backingText" class="is-size-5 level-item has-text-centered"></h3>
     <section id="backing-track" class="level-item has-text-centered">
-        <!-- <iframe src="https://www.youtube.com/embed/aTJiRgAW2cE" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe> -->
     </section>
     <h4 id="popularText" class="is-size-5 level-item has-text-centered"></h4>
     <section id="popular-song" class="level-item has-text-centered">
-        <!-- <iframe src="https://www.youtube.com/embed/QxTBtHsh408" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe> -->
     </section>
     <div class="is-size-4 has-text-weight-bold has-text-centered"> Minutes spent practicing:
     </div>

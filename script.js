@@ -75,13 +75,13 @@ $(window).on('load', function () {
 });
 
 upButton.addEventListener("click", function () {
-    count += .5;
+    count += 15;
     counter.innerHTML = count;
 
     localStorage.setItem("count", count);
 });
 downButton.addEventListener("click", function () {
-    count += .5;
+    count -= 15;
     counter.innerHTML = count;
 
     localStorage.setItem("count", count);

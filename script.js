@@ -5,7 +5,7 @@ var headingArray = [
     },
     {
         heading: "Let's Play the Blues",
-        instructions: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero dignissimos iste ut ab ex velit dolorum voluptate rem quibusdam quaerat, tenetur ad consequatur vitae veritatis odit expedita id officiis magni?"
+        instructions: "Just do it"
     }
 ]
 
@@ -17,6 +17,7 @@ var keyArray = [
         figure: "./assets/C-major.PNG",
         backingText: "Backing Track in C major:",
         popularText: "C Major in popular music:",
+        backingUrl: "https://www.youtube.com/embed/Rk72m9bLrBo",
         popularUrl: "https://www.youtube.com/embed/QxTBtHsh408"
     },
     {
@@ -26,6 +27,7 @@ var keyArray = [
         figure: "./assets/D-dorian.PNG",
         backingText: "Backing Track in D Dorian:",
         popularText: "D Dorian in popular music:",
+        backingUrl: "https://www.youtube.com/embed/ldIlMNRSUok",
         popularUrl: "https://www.youtube.com/embed/zz8frWcmthA"
 
     },
@@ -36,6 +38,7 @@ var keyArray = [
         figure: "./assets/E-phrygian.PNG",
         backingText: "Backing Track in E Phrygian:",
         popularText: "E Phrygian in popular music:",
+        backingUrl: "https://www.youtube.com/embed/i_YV8uxzFac",
         popularUrl: "https://www.youtube.com/embed/nXrygUZPrII"
 
     },
@@ -46,6 +49,7 @@ var keyArray = [
         figure: "./assets/F-lydian.PNG",
         backingText: "Backing Track in F Lydian:",
         popularText: "F Lydian in popular music:",
+        backingUrl: "https://www.youtube.com/embed/NE6wOVqBpEs",
         popularUrl: "https://www.youtube.com/embed/OnxkfLe4G74"
 
     },
@@ -56,6 +60,7 @@ var keyArray = [
         figure: "./assets/G-mixolydian.PNG",
         backingText: "Backing Track in G Mixolydian:",
         popularText: "G Mixolydian in popular music:",
+        backingUrl: "https://www.youtube.com/embed/RW5T_OgjJ3k",
         popularUrl: "https://www.youtube.com/embed/-488UORrfJ0"
 
     },
@@ -66,6 +71,7 @@ var keyArray = [
         figure: "./assets/A-aeolian.PNG",
         backingText: "Backing Track in A Aeolian:",
         popularText: "A Aeolian in popular music:",
+        backingUrl: "https://www.youtube.com/embed/z-nad4pCGus",
         popularUrl: "https://www.youtube.com/embed/jvRumkRr6Nc"
 
     },
@@ -76,20 +82,12 @@ var keyArray = [
         figure: "./assets/B-locrian.PNG",
         backingText: "Backing Track in B Locrian:",
         popularText: "B Locrian in popular music:",
+        backingUrl: "https://www.youtube.com/embed/aDwr_R5bWY0",
         popularUrl: "https://www.youtube.com/embed/vjAIZ9wQAnc"
-
     }
 ]
 
 //Display function
-function pageLoad() {
-    document.getElementById("heading").textContent = headingArray[0].heading;
-    document.getElementById("instructions").textContent = headingArray[0].instructions;
-    document.getElementById("bluesChart").style.display = "none";
-
-}
-pageLoad();
-
 function bluesChart() {
     var chart = document.createElement("img");
     chart.className = "image";
@@ -98,6 +96,13 @@ function bluesChart() {
     src.appendChild(chart);
 }
 bluesChart()
+
+function pageLoad() {
+    document.getElementById("heading").textContent = headingArray[0].heading;
+    document.getElementById("instructions").textContent = headingArray[0].instructions;
+    document.getElementById("bluesChart").style.display = "none";
+}
+pageLoad();
 
 function displayEl(index) {
     var image = document.createElement("img")
@@ -129,9 +134,9 @@ $("#scalesTab").click(function () {
     $("#backingText").show();
     $("#popularText").show();
     $("#bluesChart").hide();
+    $("#backing-track").show();
     $("#popular-song").show();
 });
-
 
 $("#bluesTab").click(function () {
     $("#btnCol").hide();
@@ -142,9 +147,9 @@ $("#bluesTab").click(function () {
     $("#backingText").hide();
     $("#popularText").hide();
     $("#bluesChart").show();
+    $("#backing-track").hide();
     $("#popular-song").hide();
 });
-
 
 // generate buttons
 var buttons = document.getElementById("btnCol")
@@ -161,10 +166,10 @@ function addButtons(index) {
         displayEl(index);
     });
     keyBtn.addEventListener('click', function () {
-        showVideo(keyArray[index].popularUrl);
+        backingVideo(keyArray[index].backingUrl);
+        popularVideo(keyArray[index].popularUrl);
     })
 }
-
 for (let b = 0; b < 7; b++) {
     addButtons(b)
 }
@@ -198,19 +203,37 @@ document.getElementById("clearBtn").onclick = function () {
     counter.innerHTML = count;
 }
 
-function showVideo(srcValue) {
+function backingVideo(backingSrc) {
+    //clear container element to get ready for new video
+    document.getElementById('backing-track').innerHTML = ''
+    // creates iframe
+    let backingVideo = document.createElement('iframe')
+    // create a src attribute on the iframe
+    backingVideo.setAttribute('src', backingSrc)
+    backingVideo.setAttribute('height', '315')
+    backingVideo.setAttribute('width', '560')
+    backingVideo.setAttribute('frameborder', '0')
+    backingVideo.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture')
+    backingVideo.setAttribute('allowfullscreen', '')
+    console.log(backingVideo);
+    // Inject dynamically created video into the DOM container
+    document.getElementById('backing-track').appendChild(backingVideo)
+}
+
+function popularVideo(popularSrc) {
     //clear container element to get ready for new video
     document.getElementById('popular-song').innerHTML = ''
     // creates iframe
-    let myVideo = document.createElement('iframe')
+    let popularVideo = document.createElement('iframe')
     // create a src attribute on the iframe
-    myVideo.setAttribute('src', srcValue)
-    myVideo.setAttribute('height', '315')
-    myVideo.setAttribute('width', '560')
-    myVideo.setAttribute('frameborder', '0')
-    myVideo.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture')
-    myVideo.setAttribute('allowfullscreen', '')
-    console.log(myVideo);
+    popularVideo.setAttribute('src', popularSrc)
+    popularVideo.setAttribute('height', '315')
+    popularVideo.setAttribute('width', '560')
+    popularVideo.setAttribute('frameborder', '0')
+    popularVideo.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture')
+    popularVideo.setAttribute('allowfullscreen', '')
+    console.log(popularVideo);
     // Inject dynamically created video into the DOM container
-    document.getElementById('popular-song').appendChild(myVideo)
+    document.getElementById('popular-song').appendChild(popularVideo)
 }
+

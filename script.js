@@ -130,9 +130,15 @@ var playBlues = document.getElementById("playBlues")
 function playVideo() {
     var bluesBtn = document.createElement("a");
     bluesBtn.className = "button is-info is-rounded";
-    bluesBtn.innerHTML = 'Play'
-    bluesBtn.id = 'playMe'
+    bluesBtn.innerHTML = 'Blues Backing Track';
+    bluesBtn.id = 'playMe';
     playBlues.append(bluesBtn);
+    document.getElementById("playMe").addEventListener("click", getVideo);
+    $('#bluesVideo').show();
+
+
+
+
 
 
 
@@ -164,7 +170,12 @@ document.getElementById("scalesTab").onclick = function () {
     $("#bluesChart").hide();
     $("#backing-track").show();
     $("#popular-song").show();
-    $('bluesVideo').hide();
+    $('#bluesVideo').hide();
+    $('#playMe').hide();
+    $("#bluesVideo").empty();
+    $("#bluesVideo").empty();
+
+
 }
 
 // generate buttons
@@ -251,7 +262,8 @@ function bluesBacking(popularSrc) {
     // Inject dynamically created video into the DOM container
     document.getElementById('popular-song').appendChild(popularVideo)
 }
-// Youtube API call to get videos for C blues backing and play them on the click of a button
+// Youtube API call to get videos for C blues backing track. The function will pull 5 results if successful
+// the embed function video will be ran, which will put the video into an iframe.
 
 function getVideo() {
     $.ajax({
@@ -279,7 +291,7 @@ function getVideo() {
 }
 
 function embedVideo(data) {
-    $('iframe').attr('src', 'https://www.youtube.com/embed/' + data.items[Math.floor(Math.random() * 4) + 1].id.videoId)
+    $('#bluesVideo').attr({ 'src': 'https://www.youtube.com/embed/' + data.items[Math.floor(Math.random() * 4) + 1].id.videoId, 'height': '315', 'width': '560' })
 }
-document.getElementById("playMe").addEventListener("click", getVideo);
+
 

@@ -5,7 +5,7 @@ var headingArray = [
     },
     {
         heading: "Let's Play the Blues",
-        instructions: "Just do it"
+        instructions: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, rem vel enim veritatis inventore facilis, qui iste, animi voluptates illo consequatur quam amet hic? In, quos corporis? Dolores, ducimus consectetur!"
     }
 ]
 
@@ -21,8 +21,11 @@ var keyArray = [
         popularText: "C Major in popular music:",
         backingUrl: "https://www.youtube.com/embed/Rk72m9bLrBo",
         popularUrl: "https://www.youtube.com/embed/QxTBtHsh408",
+//<<<<<<< counter
+//=======
         
         
+//>>>>>>> main
     },
     {
         key: "D Dorian",
@@ -34,7 +37,6 @@ var keyArray = [
         popularText: "D Dorian in popular music:",
         backingUrl: "https://www.youtube.com/embed/ldIlMNRSUok",
         popularUrl: "https://www.youtube.com/embed/zz8frWcmthA"
-
     },
     {
         key: "E Phrygian",
@@ -46,7 +48,6 @@ var keyArray = [
         popularText: "E Phrygian in popular music:",
         backingUrl: "https://www.youtube.com/embed/i_YV8uxzFac",
         popularUrl: "https://www.youtube.com/embed/nXrygUZPrII"
-
     },
     {
         key: "F Lydian",
@@ -58,7 +59,6 @@ var keyArray = [
         popularText: "F Lydian in popular music:",
         backingUrl: "https://www.youtube.com/embed/NE6wOVqBpEs",
         popularUrl: "https://www.youtube.com/embed/OnxkfLe4G74"
-
     },
     {
         key: "G Mixolydian",
@@ -70,7 +70,6 @@ var keyArray = [
         popularText: "G Mixolydian in popular music:",
         backingUrl: "https://www.youtube.com/embed/RW5T_OgjJ3k",
         popularUrl: "https://www.youtube.com/embed/-488UORrfJ0"
-
     },
     {
         key: "A Aeolian",
@@ -82,7 +81,6 @@ var keyArray = [
         popularText: "A Aeolian in popular music:",
         backingUrl: "https://www.youtube.com/embed/z-nad4pCGus",
         popularUrl: "https://www.youtube.com/embed/jvRumkRr6Nc"
-
     },
     {
         key: "B Locrian",
@@ -164,6 +162,7 @@ document.getElementById("bluesTab").onclick = function () {
     $("#bluesChart").show();
     $("#backing-track").hide();
     $("#popular-song").hide();
+    $("#play").hide();
 }
 document.getElementById("scalesTab").onclick = function () {
     document.getElementById("heading").textContent = headingArray[0].heading;
@@ -178,6 +177,7 @@ document.getElementById("scalesTab").onclick = function () {
     $("#bluesChart").hide();
     $("#backing-track").show();
     $("#popular-song").show();
+    $("#play").show();
 }
 
 // generate buttons
@@ -193,9 +193,21 @@ function addButtons(index) {
     btnDiv.append(keyBtn);
     buttons.append(btnDiv);
     keyBtn.addEventListener("click", function () {
+        document.getElementById('play').innerHTML = "";
         document.getElementById('figureImage').innerHTML = "";
         document.getElementById('play').innerHTML = "";
         displayEl(index);
+        var playButton = document.createElement("a");
+        playButton.className = "button is-primary"
+        var playField = document.getElementById("play")
+        playField.append(playButton)
+        playButton.innerHTML = "Play";
+        playButton.addEventListener('click', myPlay);
+        function myPlay() {
+            var audio = new Audio(keyArray[index].sound);
+            audio.setAttribute("id", "sound")
+            audio.play().then(audio.removeElement("#sound"))
+        }
     });
 
 
@@ -219,13 +231,13 @@ $(window).on('load', function () {
 upButton.addEventListener("click", function () {
     count += 30;
     counter.innerHTML = count;
-
     localStorage.setItem("count", count);
 });
 downButton.addEventListener("click", function () {
-    count -= 30;
+    if (count > 0) {
+        count -= 30;
+    }
     counter.innerHTML = count;
-
     localStorage.setItem("count", count);
 });
 document.getElementById("clearBtn").onclick = function () {
@@ -234,6 +246,7 @@ document.getElementById("clearBtn").onclick = function () {
     counter.innerHTML = count;
 }
 
+// Video Embeds
 function backingVideo(backingSrc) {
     //clear container element to get ready for new video
     document.getElementById('backing-track').innerHTML = ''
@@ -267,6 +280,8 @@ function popularVideo(popularSrc) {
     // Inject dynamically created video into the DOM container
     document.getElementById('popular-song').appendChild(popularVideo)
 }
+//<<<<<<< counter
+//=======
 
     // play.addEventListener('click', myPlay);
     // function myPlay(music){
@@ -277,3 +292,4 @@ function popularVideo(popularSrc) {
     
     
 // myPlay(keyArray[index].sound)
+//>>>>>>> main

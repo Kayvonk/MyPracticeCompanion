@@ -133,8 +133,11 @@ function playVideo() {
     bluesBtn.innerHTML = 'C Blues Backing Track';
     bluesBtn.id = 'playMe';
     playBlues.append(bluesBtn);
-    document.getElementById("playMe").addEventListener("click", getVideo);
     $('#bluesVideo').show();
+    document.getElementById('popular-song').innerHTML = ''
+    document.getElementById('backing-track').innerHTML = ''
+    document.getElementById("playMe").addEventListener("click", getVideo);
+
 
 
 

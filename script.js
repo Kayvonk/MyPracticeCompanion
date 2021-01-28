@@ -5,7 +5,7 @@ var headingArray = [
     },
     {
         heading: "Let's Play the Blues",
-        instructions: "Just do it"
+        instructions: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, rem vel enim veritatis inventore facilis, qui iste, animi voluptates illo consequatur quam amet hic? In, quos corporis? Dolores, ducimus consectetur!"
     }
 ]
 
@@ -15,71 +15,73 @@ var keyArray = [
         steps: "W-W-h-W-W-W-h",
         intervals: "1-2-3-4-5-6-7-1",
         figure: "./assets/C-major.PNG",
+        sound: "./assets/C-major-audio.mp3",
         backingText: "Backing Track in C major:",
         popularText: "C Major in popular music:",
         backingUrl: "https://www.youtube.com/embed/Rk72m9bLrBo",
-        popularUrl: "https://www.youtube.com/embed/QxTBtHsh408"
+        popularUrl: "https://www.youtube.com/embed/QxTBtHsh408",
     },
     {
         key: "D Dorian",
         steps: "W-h-W-W-W-h-W",
         intervals: "1-2-b3-4-5-6-b7-1",
         figure: "./assets/D-dorian.PNG",
+        sound: "./assets/D-dorian-audio.mp3",
         backingText: "Backing Track in D Dorian:",
         popularText: "D Dorian in popular music:",
         backingUrl: "https://www.youtube.com/embed/ldIlMNRSUok",
         popularUrl: "https://www.youtube.com/embed/zz8frWcmthA"
-
     },
     {
         key: "E Phrygian",
         steps: "h-W-W-W-h-W-W",
         intervals: "1-b2-b3-4-5-b6-b7-1",
         figure: "./assets/E-phrygian.PNG",
+        sound: "./assets/E-phrygian-audio.mp3",
         backingText: "Backing Track in E Phrygian:",
         popularText: "E Phrygian in popular music:",
         backingUrl: "https://www.youtube.com/embed/i_YV8uxzFac",
         popularUrl: "https://www.youtube.com/embed/nXrygUZPrII"
-
     },
     {
         key: "F Lydian",
         steps: "W-W-W-h-W-W-h",
         intervals: "1-2-3-#4-5-6-7-1",
         figure: "./assets/F-lydian.PNG",
+        sound: "./assets/F-lydian-audio.mp3",
         backingText: "Backing Track in F Lydian:",
         popularText: "F Lydian in popular music:",
         backingUrl: "https://www.youtube.com/embed/NE6wOVqBpEs",
         popularUrl: "https://www.youtube.com/embed/OnxkfLe4G74"
-
     },
     {
         key: "G Mixolydian",
         steps: "W-W-h-W-W-h-W",
         intervals: "1-2-3-4-5-6-b7-1",
         figure: "./assets/G-mixolydian.PNG",
+        sound: "./assets/G-mixolydian-audio.mp3",
         backingText: "Backing Track in G Mixolydian:",
         popularText: "G Mixolydian in popular music:",
         backingUrl: "https://www.youtube.com/embed/RW5T_OgjJ3k",
         popularUrl: "https://www.youtube.com/embed/-488UORrfJ0"
-
     },
     {
         key: "A Aeolian",
         steps: "W-h-W-W-h-W-W",
         intervals: "1-2-b3-4-5-b6-b7-1",
         figure: "./assets/A-aeolian.PNG",
+        sound: "./assets/A-aeolian-audio.mp3",
         backingText: "Backing Track in A Aeolian:",
         popularText: "A Aeolian in popular music:",
         backingUrl: "https://www.youtube.com/embed/z-nad4pCGus",
         popularUrl: "https://www.youtube.com/embed/jvRumkRr6Nc"
-
     },
     {
         key: "B Locrian",
         steps: "h-W-W-h-W-W-W",
         intervals: "1-b2-b3-4-b5-b6-b7-1",
         figure: "./assets/B-locrian.PNG",
+        sound: "./assets/B-locrian-audio.mp3",
         backingText: "Backing Track in B Locrian:",
         popularText: "B Locrian in popular music:",
         backingUrl: "https://www.youtube.com/embed/aDwr_R5bWY0",
@@ -129,6 +131,7 @@ document.getElementById("bluesTab").onclick = function () {
     $("#bluesChart").show();
     $("#backing-track").hide();
     $("#popular-song").hide();
+    $("#play").hide();
 }
 document.getElementById("scalesTab").onclick = function () {
     document.getElementById("heading").textContent = headingArray[0].heading;
@@ -143,6 +146,7 @@ document.getElementById("scalesTab").onclick = function () {
     $("#bluesChart").hide();
     $("#backing-track").show();
     $("#popular-song").show();
+    $("#play").show();
 }
 
 // generate buttons
@@ -156,8 +160,20 @@ function addButtons(index) {
     btnDiv.append(keyBtn);
     buttons.append(btnDiv);
     keyBtn.addEventListener("click", function () {
+        document.getElementById('play').innerHTML = "";
         document.getElementById('figureImage').innerHTML = "";
         displayEl(index);
+        var playButton = document.createElement("a");
+        playButton.className = "button is-primary"
+        var playField = document.getElementById("play")
+        playField.append(playButton)
+        playButton.innerHTML = "Play";
+        playButton.addEventListener('click', myPlay);
+        function myPlay() {
+            var audio = new Audio(keyArray[index].sound);
+            audio.setAttribute("id", "sound")
+            audio.play().then(audio.removeElement("#sound"))
+        }
     });
     keyBtn.addEventListener('click', function () {
         backingVideo(keyArray[index].backingUrl);
@@ -181,13 +197,13 @@ $(window).on('load', function () {
 upButton.addEventListener("click", function () {
     count += 30;
     counter.innerHTML = count;
-
     localStorage.setItem("count", count);
 });
 downButton.addEventListener("click", function () {
-    count -= 30;
+    if (count > 0) {
+        count -= 30;
+    }
     counter.innerHTML = count;
-
     localStorage.setItem("count", count);
 });
 document.getElementById("clearBtn").onclick = function () {
@@ -196,6 +212,7 @@ document.getElementById("clearBtn").onclick = function () {
     counter.innerHTML = count;
 }
 
+// Video Embeds
 function backingVideo(backingSrc) {
     //clear container element to get ready for new video
     document.getElementById('backing-track').innerHTML = ''
@@ -229,4 +246,3 @@ function popularVideo(popularSrc) {
     // Inject dynamically created video into the DOM container
     document.getElementById('popular-song').appendChild(popularVideo)
 }
-

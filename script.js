@@ -100,7 +100,7 @@ bluesChart()
 function pageLoad() {
     document.getElementById("heading").textContent = headingArray[0].heading;
     document.getElementById("instructions").textContent = headingArray[0].instructions;
-    document.getElementById("bluesChart").style.display = "none";
+    $("#bluesChart").hide();
 }
 pageLoad();
 
@@ -119,26 +119,6 @@ function displayEl(index) {
 document.getElementById("bluesTab").onclick = function () {
     document.getElementById("heading").textContent = headingArray[1].heading;
     document.getElementById("instructions").textContent = headingArray[1].instructions;
-}
-document.getElementById("scalesTab").onclick = function () {
-    document.getElementById("heading").textContent = headingArray[0].heading;
-    document.getElementById("instructions").textContent = headingArray[0].instructions;
-}
-
-$("#scalesTab").click(function () {
-    $("#btnCol").show();
-    $("#figureImage").show();
-    $("#appendKey").show();
-    $("#appendSteps").show();
-    $("#appendIntervals").show();
-    $("#backingText").show();
-    $("#popularText").show();
-    $("#bluesChart").hide();
-    $("#backing-track").show();
-    $("#popular-song").show();
-});
-
-$("#bluesTab").click(function () {
     $("#btnCol").hide();
     $("#figureImage").hide();
     $("#appendKey").hide();
@@ -149,7 +129,21 @@ $("#bluesTab").click(function () {
     $("#bluesChart").show();
     $("#backing-track").hide();
     $("#popular-song").hide();
-});
+}
+document.getElementById("scalesTab").onclick = function () {
+    document.getElementById("heading").textContent = headingArray[0].heading;
+    document.getElementById("instructions").textContent = headingArray[0].instructions;
+    $("#btnCol").show();
+    $("#figureImage").show();
+    $("#appendKey").show();
+    $("#appendSteps").show();
+    $("#appendIntervals").show();
+    $("#backingText").show();
+    $("#popularText").show();
+    $("#bluesChart").hide();
+    $("#backing-track").show();
+    $("#popular-song").show();
+}
 
 // generate buttons
 var buttons = document.getElementById("btnCol")
@@ -184,7 +178,6 @@ $(window).on('load', function () {
     count = parseInt(localStorage.getItem("count") || 0);
     counter.innerHTML = count;
 });
-
 upButton.addEventListener("click", function () {
     count += 30;
     counter.innerHTML = count;

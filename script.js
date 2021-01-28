@@ -5,7 +5,7 @@ var headingArray = [
     },
     {
         heading: "Let's Play the Blues",
-        instructions: "Just do it"
+        instructions: "Time to practice some blues! Clicking \"Blues Backing Track\" will dynamically pull a C blues backing track from Youtube."
     }
 ]
 
@@ -130,7 +130,7 @@ var playBlues = document.getElementById("playBlues")
 function playVideo() {
     var bluesBtn = document.createElement("a");
     bluesBtn.className = "button is-info is-rounded";
-    bluesBtn.innerHTML = 'Blues Backing Track';
+    bluesBtn.innerHTML = 'C Blues Backing Track';
     bluesBtn.id = 'playMe';
     playBlues.append(bluesBtn);
     document.getElementById("playMe").addEventListener("click", getVideo);
@@ -170,10 +170,11 @@ document.getElementById("scalesTab").onclick = function () {
     $("#bluesChart").hide();
     $("#backing-track").show();
     $("#popular-song").show();
+    $("#youtubeVideo").empty();
+    $("#playMe").empty();
     $('#bluesVideo').hide();
     $('#playMe').hide();
-    $("#bluesVideo").empty();
-    $("#bluesVideo").empty();
+
 
 
 }
@@ -248,6 +249,7 @@ function backingVideo(backingSrc) {
 
 function bluesBacking(popularSrc) {
     //clear container element to get ready for new video
+    document.getElementById('bluesVideo').innerHTML = ''
     document.getElementById('popular-song').innerHTML = ''
     // creates iframe
     let popularVideo = document.createElement('iframe')

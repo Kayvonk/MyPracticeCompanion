@@ -9,22 +9,27 @@ var headingArray = [
     }
 ]
 
+
 var keyArray = [
     {
         key: "C Major",
         steps: "W-W-h-W-W-W-h",
         intervals: "1-2-3-4-5-6-7-1",
         figure: "./assets/C-major.PNG",
+        sound: "./assets/C-major-audio.mp3",
         backingText: "Backing Track in C major:",
         popularText: "C Major in popular music:",
         backingUrl: "https://www.youtube.com/embed/Rk72m9bLrBo",
-        popularUrl: "https://www.youtube.com/embed/QxTBtHsh408"
+        popularUrl: "https://www.youtube.com/embed/QxTBtHsh408",
+        
+        
     },
     {
         key: "D Dorian",
         steps: "W-h-W-W-W-h-W",
         intervals: "1-2-b3-4-5-6-b7-1",
         figure: "./assets/D-dorian.PNG",
+        sound: "./assets/D-dorian-audio.mp3",
         backingText: "Backing Track in D Dorian:",
         popularText: "D Dorian in popular music:",
         backingUrl: "https://www.youtube.com/embed/ldIlMNRSUok",
@@ -36,6 +41,7 @@ var keyArray = [
         steps: "h-W-W-W-h-W-W",
         intervals: "1-b2-b3-4-5-b6-b7-1",
         figure: "./assets/E-phrygian.PNG",
+        sound: "./assets/E-phrygian-audio.mp3",
         backingText: "Backing Track in E Phrygian:",
         popularText: "E Phrygian in popular music:",
         backingUrl: "https://www.youtube.com/embed/i_YV8uxzFac",
@@ -47,6 +53,7 @@ var keyArray = [
         steps: "W-W-W-h-W-W-h",
         intervals: "1-2-3-#4-5-6-7-1",
         figure: "./assets/F-lydian.PNG",
+        sound: "./assets/F-lydian-audio.mp3",
         backingText: "Backing Track in F Lydian:",
         popularText: "F Lydian in popular music:",
         backingUrl: "https://www.youtube.com/embed/NE6wOVqBpEs",
@@ -58,6 +65,7 @@ var keyArray = [
         steps: "W-W-h-W-W-h-W",
         intervals: "1-2-3-4-5-6-b7-1",
         figure: "./assets/G-mixolydian.PNG",
+        sound: "./assets/G-mixolydian-audio.mp3",
         backingText: "Backing Track in G Mixolydian:",
         popularText: "G Mixolydian in popular music:",
         backingUrl: "https://www.youtube.com/embed/RW5T_OgjJ3k",
@@ -69,6 +77,7 @@ var keyArray = [
         steps: "W-h-W-W-h-W-W",
         intervals: "1-2-b3-4-5-b6-b7-1",
         figure: "./assets/A-aeolian.PNG",
+        sound: "./assets/A-aeolian-audio.mp3",
         backingText: "Backing Track in A Aeolian:",
         popularText: "A Aeolian in popular music:",
         backingUrl: "https://www.youtube.com/embed/z-nad4pCGus",
@@ -80,6 +89,7 @@ var keyArray = [
         steps: "h-W-W-h-W-W-W",
         intervals: "1-b2-b3-4-b5-b6-b7-1",
         figure: "./assets/B-locrian.PNG",
+        sound: "./assets/B-locrian-audio.mp3",
         backingText: "Backing Track in B Locrian:",
         popularText: "B Locrian in popular music:",
         backingUrl: "https://www.youtube.com/embed/aDwr_R5bWY0",
@@ -113,6 +123,31 @@ function displayEl(index) {
     document.getElementById("appendIntervals").textContent = keyArray[index].intervals;
     document.getElementById("backingText").textContent = keyArray[index].backingText;
     document.getElementById("popularText").textContent = keyArray[index].popularText;
+    var playButton = document.createElement("a");
+    playButton.className="button is-primary" 
+    var playField = document.getElementById("play")
+    playField.append(playButton)
+    playButton.innerHTML = "play";
+        play.addEventListener('click', myPlay);
+
+    function myPlay(){
+        //document.getElementById("play").innerHTML =""
+    var audio = new Audio(keyArray[index].sound);
+    audio.setAttribute("id", "sound")
+    audio.play().then(audio.removeElement("#sound"))
+    console.log (audio)
+    }
+//audio.setAttribute("id", "sound")
+//then(audio.removeElement("#sound")) line 137
+
+    // play.addEventListener('click', myPlay);
+    // function myPlay(music){
+    // var audio = new Audio(music);
+    // audio.play();
+    // }
+    
+    
+    //document.getElementById("play").textContent = keyArray[index].sound;
 }
 
 // show/hide
@@ -159,16 +194,19 @@ function addButtons(index) {
     var keyBtn = document.createElement("a");
     keyBtn.className = "button is-info is-rounded";
     keyBtn.innerHTML = keyArray[index].key;
+    
+
     btnDiv.append(keyBtn);
     buttons.append(btnDiv);
     keyBtn.addEventListener("click", function () {
         document.getElementById('figureImage').innerHTML = "";
+        document.getElementById('play').innerHTML = "";
         displayEl(index);
     });
-    keyBtn.addEventListener('click', function () {
-        backingVideo(keyArray[index].backingUrl);
-        popularVideo(keyArray[index].popularUrl);
-    })
+
+
+    
+
 }
 for (let b = 0; b < 7; b++) {
     addButtons(b)
@@ -237,3 +275,12 @@ function popularVideo(popularSrc) {
     document.getElementById('popular-song').appendChild(popularVideo)
 }
 
+    // play.addEventListener('click', myPlay);
+    // function myPlay(music){
+    // var audio = new Audio(music);
+    // audio.play();
+    // }
+
+    
+    
+// myPlay(keyArray[index].sound)

@@ -101,7 +101,12 @@ function pageLoad() {
     document.getElementById("heading").textContent = headingArray[0].heading;
     document.getElementById("instructions").textContent = headingArray[0].instructions;
     $("#bluesChart").hide();
+    $('#bluesVideo').hide();
+
+
+
 }
+
 pageLoad();
 
 function displayEl(index) {
@@ -117,6 +122,20 @@ function displayEl(index) {
 
 // show/hide
 document.getElementById("bluesTab").onclick = function () {
+    playVideo();
+
+}
+
+var playBlues = document.getElementById("playBlues")
+function playVideo() {
+    var bluesBtn = document.createElement("a");
+    bluesBtn.className = "button is-info is-rounded";
+    bluesBtn.innerHTML = 'Play'
+    bluesBtn.id = 'playMe'
+    playBlues.append(bluesBtn);
+
+
+
     document.getElementById("heading").textContent = headingArray[1].heading;
     document.getElementById("instructions").textContent = headingArray[1].instructions;
     $("#btnCol").hide();
@@ -127,8 +146,10 @@ document.getElementById("bluesTab").onclick = function () {
     $("#backingText").hide();
     $("#popularText").hide();
     $("#bluesChart").show();
+    $("#blues-backing").show();
     $("#backing-track").hide();
     $("#popular-song").hide();
+    $('bluesVideo').show()
 }
 document.getElementById("scalesTab").onclick = function () {
     document.getElementById("heading").textContent = headingArray[0].heading;
@@ -143,6 +164,7 @@ document.getElementById("scalesTab").onclick = function () {
     $("#bluesChart").hide();
     $("#backing-track").show();
     $("#popular-song").show();
+    $('bluesVideo').hide();
 }
 
 // generate buttons
@@ -213,7 +235,7 @@ function backingVideo(backingSrc) {
     document.getElementById('backing-track').appendChild(backingVideo)
 }
 
-function popularVideo(popularSrc) {
+function bluesBacking(popularSrc) {
     //clear container element to get ready for new video
     document.getElementById('popular-song').innerHTML = ''
     // creates iframe
@@ -229,4 +251,35 @@ function popularVideo(popularSrc) {
     // Inject dynamically created video into the DOM container
     document.getElementById('popular-song').appendChild(popularVideo)
 }
+// Youtube API call to get videos for C blues backing and play them on the click of a button
+
+function getVideo() {
+    $.ajax({
+        type: 'GET',
+        url: 'https://www.googleapis.com/youtube/v3/search',
+        data: {
+            key: 'AIzaSyAFKENpfagXiiMiXbcuNBpelI8r3l8VcvU',
+            q: "c blues backing",
+            part: 'snippet',
+            maxResults: 5,
+            type: 'video',
+            videoEmbeddable: true,
+
+        },
+        success: function (data) {
+            embedVideo(data);
+            console.log(data)
+
+        },
+        error: function (response) {
+            console.log("Request Failed");
+        },
+    });
+
+}
+
+function embedVideo(data) {
+    $('iframe').attr('src', 'https://www.youtube.com/embed/' + data.items[Math.floor(Math.random() * 4) + 1].id.videoId)
+}
+document.getElementById("playMe").addEventListener("click", getVideo);
 

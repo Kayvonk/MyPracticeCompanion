@@ -9,6 +9,7 @@ var headingArray = [
     }
 ]
 
+
 var keyArray = [
     {
         key: "C Major",
@@ -20,6 +21,11 @@ var keyArray = [
         popularText: "C Major in popular music:",
         backingUrl: "https://www.youtube.com/embed/Rk72m9bLrBo",
         popularUrl: "https://www.youtube.com/embed/QxTBtHsh408",
+//<<<<<<< counter
+//=======
+        
+        
+//>>>>>>> main
     },
     {
         key: "D Dorian",
@@ -115,6 +121,31 @@ function displayEl(index) {
     document.getElementById("appendIntervals").textContent = keyArray[index].intervals;
     document.getElementById("backingText").textContent = keyArray[index].backingText;
     document.getElementById("popularText").textContent = keyArray[index].popularText;
+    var playButton = document.createElement("a");
+    playButton.className="button is-primary" 
+    var playField = document.getElementById("play")
+    playField.append(playButton)
+    playButton.innerHTML = "play";
+        play.addEventListener('click', myPlay);
+
+    function myPlay(){
+        //document.getElementById("play").innerHTML =""
+    var audio = new Audio(keyArray[index].sound);
+    audio.setAttribute("id", "sound")
+    audio.play().then(audio.removeElement("#sound"))
+    console.log (audio)
+    }
+//audio.setAttribute("id", "sound")
+//then(audio.removeElement("#sound")) line 137
+
+    // play.addEventListener('click', myPlay);
+    // function myPlay(music){
+    // var audio = new Audio(music);
+    // audio.play();
+    // }
+    
+    
+    //document.getElementById("play").textContent = keyArray[index].sound;
 }
 
 // show/hide
@@ -157,11 +188,14 @@ function addButtons(index) {
     var keyBtn = document.createElement("a");
     keyBtn.className = "button is-info is-rounded";
     keyBtn.innerHTML = keyArray[index].key;
+    
+
     btnDiv.append(keyBtn);
     buttons.append(btnDiv);
     keyBtn.addEventListener("click", function () {
         document.getElementById('play').innerHTML = "";
         document.getElementById('figureImage').innerHTML = "";
+        document.getElementById('play').innerHTML = "";
         displayEl(index);
         var playButton = document.createElement("a");
         playButton.className = "button is-primary"
@@ -175,10 +209,10 @@ function addButtons(index) {
             audio.play().then(audio.removeElement("#sound"))
         }
     });
-    keyBtn.addEventListener('click', function () {
-        backingVideo(keyArray[index].backingUrl);
-        popularVideo(keyArray[index].popularUrl);
-    })
+
+
+    
+
 }
 for (let b = 0; b < 7; b++) {
     addButtons(b)
@@ -246,3 +280,16 @@ function popularVideo(popularSrc) {
     // Inject dynamically created video into the DOM container
     document.getElementById('popular-song').appendChild(popularVideo)
 }
+//<<<<<<< counter
+//=======
+
+    // play.addEventListener('click', myPlay);
+    // function myPlay(music){
+    // var audio = new Audio(music);
+    // audio.play();
+    // }
+
+    
+    
+// myPlay(keyArray[index].sound)
+//>>>>>>> main

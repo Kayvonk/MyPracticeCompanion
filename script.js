@@ -7,11 +7,8 @@ var headingArray = [
         heading: "Let's Play the Blues",
 
         instructions: "Time to practice some blues! Clicking \"Blues Backing Track\" will dynamically pull a C blues backing track from Youtube."
-
-        
     }
 ]
-
 
 var keyArray = [
     {
@@ -24,11 +21,6 @@ var keyArray = [
         popularText: "C Major in popular music:",
         backingUrl: "https://www.youtube.com/embed/Rk72m9bLrBo",
         popularUrl: "https://www.youtube.com/embed/QxTBtHsh408",
-//<<<<<<< counter
-//=======
-        
-        
-//>>>>>>> main
     },
     {
         key: "D Dorian",
@@ -103,8 +95,8 @@ function bluesChart() {
     var chart = document.createElement("img");
     chart.className = "image";
     chart.src = "./assets/basic-blues.PNG";
-    var src = document.getElementById("bluesChart");
-    src.appendChild(chart);
+    var bluesChart = document.getElementById("bluesChart");
+    bluesChart.appendChild(chart);
 }
 bluesChart()
 
@@ -113,9 +105,6 @@ function pageLoad() {
     document.getElementById("instructions").textContent = headingArray[0].instructions;
     $("#bluesChart").hide();
     $('#bluesVideo').hide();
-
-
-
 }
 
 pageLoad();
@@ -130,57 +119,20 @@ function displayEl(index) {
     document.getElementById("backingText").textContent = keyArray[index].backingText;
     document.getElementById("popularText").textContent = keyArray[index].popularText;
     var playButton = document.createElement("a");
-    playButton.className="button is-primary" 
+    playButton.className = "button is-primary"
     var playField = document.getElementById("play")
     playField.append(playButton)
-    playButton.innerHTML = "play";
-        play.addEventListener('click', myPlay);
-
-    function myPlay(){
-        //document.getElementById("play").innerHTML =""
-    var audio = new Audio(keyArray[index].sound);
-    audio.setAttribute("id", "sound")
-    audio.play().then(audio.removeElement("#sound"))
-    console.log (audio)
+    playButton.innerHTML = "Play";
+    playButton.addEventListener('click', myPlay);
+    function myPlay() {
+        var audio = new Audio(keyArray[index].sound);
+        audio.play()
     }
-//audio.setAttribute("id", "sound")
-//then(audio.removeElement("#sound")) line 137
-
-    // play.addEventListener('click', myPlay);
-    // function myPlay(music){
-    // var audio = new Audio(music);
-    // audio.play();
-    // }
-    
-    
-    //document.getElementById("play").textContent = keyArray[index].sound;
 }
 
-// show/hide
+// navigation tabs
 document.getElementById("bluesTab").onclick = function () {
     playVideo();
-
-}
-
-var playBlues = document.getElementById("playBlues")
-function playVideo() {
-    var bluesBtn = document.createElement("a");
-    bluesBtn.className = "button is-info is-rounded";
-    bluesBtn.innerHTML = 'C Blues Backing Track';
-    bluesBtn.id = 'playMe';
-    playBlues.append(bluesBtn);
-    $('#bluesVideo').show();
-    document.getElementById('popular-song').innerHTML = ''
-    document.getElementById('backing-track').innerHTML = ''
-    document.getElementById("playMe").addEventListener("click", getVideo);
-
-
-
-
-
-
-
-
     document.getElementById("heading").textContent = headingArray[1].heading;
     document.getElementById("instructions").textContent = headingArray[1].instructions;
     $("#btnCol").hide();
@@ -196,8 +148,21 @@ function playVideo() {
     $("#popular-song").hide();
     $('bluesVideo').show()
     $("#play").hide();
-
 }
+
+var playBlues = document.getElementById("playBlues")
+function playVideo() {
+    var bluesBtn = document.createElement("a");
+    bluesBtn.className = "button is-info is-rounded";
+    bluesBtn.innerHTML = 'C Blues Backing Track';
+    bluesBtn.id = 'playMe';
+    playBlues.append(bluesBtn);
+    $('#bluesVideo').show();
+    document.getElementById('popular-song').innerHTML = ''
+    document.getElementById('backing-track').innerHTML = ''
+    document.getElementById("playMe").addEventListener("click", getVideo);
+}
+
 document.getElementById("scalesTab").onclick = function () {
     document.getElementById("heading").textContent = headingArray[0].heading;
     document.getElementById("instructions").textContent = headingArray[0].instructions;
@@ -211,13 +176,11 @@ document.getElementById("scalesTab").onclick = function () {
     $("#bluesChart").hide();
     $("#backing-track").show();
     $("#popular-song").show();
-
     $("#youtubeVideo").empty();
     $("#playMe").empty();
     $('#bluesVideo').hide();
     $('#playMe').hide();
     $("#play").show();
-
 }
 
 // generate buttons
@@ -228,63 +191,78 @@ function addButtons(index) {
     var keyBtn = document.createElement("a");
     keyBtn.className = "button is-info is-rounded";
     keyBtn.innerHTML = keyArray[index].key;
-    
-
     btnDiv.append(keyBtn);
     buttons.append(btnDiv);
     keyBtn.addEventListener("click", function () {
         document.getElementById('play').innerHTML = "";
         document.getElementById('figureImage').innerHTML = "";
-        document.getElementById('play').innerHTML = "";
         displayEl(index);
-        var playButton = document.createElement("a");
-        playButton.className = "button is-primary"
-        var playField = document.getElementById("play")
-        playField.append(playButton)
-        playButton.innerHTML = "Play";
-        playButton.addEventListener('click', myPlay);
-        function myPlay() {
-            var audio = new Audio(keyArray[index].sound);
-            audio.setAttribute("id", "sound")
-            audio.play().then(audio.removeElement("#sound"))
-        }
-    });
-
-
-    
-
+        backingVideo(keyArray[index].backingUrl);
+        popularVideo(keyArray[index].popularUrl);
+    })
 }
+
 for (let b = 0; b < 7; b++) {
     addButtons(b)
 }
 
 //Counter
-var counter = document.querySelector("#counter");
-var upButton = document.querySelector("#upBtn");
-var downButton = document.querySelector("#downBtn");
-var count = localStorage.getItem("count");
+function counterButtons(index) {
+    var counterBtns = document.getElementById("counterBtns")
+    var upBtn = document.createElement("button");
+    upBtn.className = "button is-small is-danger upBtn mx-1";
+    var downBtn = document.createElement("button");
+    downBtn.className = "button is-small is-danger downBtn";
+    var clearBtn = document.createElement("button");
+    clearBtn.className = "button is-small is-danger clearBtn";
+    var spanUp = document.createElement("span");
+    spanUp.className = "icon";
+    var spanDown = document.createElement("span");
+    spanDown.className = "icon";
+    var spanClear = document.createElement("span");
+    spanClear.className = "icon";
+    var upIcon = document.createElement("i")
+    upIcon.className = "fas fa-arrow-up fa-lg";
+    var downIcon = document.createElement("i")
+    downIcon.className = "fas fa-arrow-down fa-lg";
+    var clearIcon = document.createElement("i")
+    clearIcon.className = "fas fa-eraser";
+    spanUp.append(upIcon)
+    spanDown.append(downIcon)
+    spanClear.append(clearIcon)
+    downBtn.append(spanDown);
+    upBtn.append(spanUp);
+    clearBtn.append(spanClear);
+    counterBtns.append(downBtn, upBtn, clearBtn);
 
-$(window).on('load', function () {
-    count = parseInt(localStorage.getItem("count") || 0);
-    counter.innerHTML = count;
-});
-upButton.addEventListener("click", function () {
-    count += 30;
-    counter.innerHTML = count;
-    localStorage.setItem("count", count);
-});
-downButton.addEventListener("click", function () {
-    if (count > 0) {
-        count -= 30;
-    }
-    counter.innerHTML = count;
-    localStorage.setItem("count", count);
-});
-document.getElementById("clearBtn").onclick = function () {
-    localStorage.clear();
-    count = 0;
-    counter.innerHTML = count;
+    var counter = document.getElementById("counter")
+    var count = localStorage.getItem("count");
+    $(window).on('load', function () {
+        count = parseInt(localStorage.getItem("count") || 0);
+        counter.innerHTML = count;
+    });
+
+    upBtn.addEventListener("click", function () {
+        count += 30;
+        counter.innerHTML = count;
+
+        localStorage.setItem("count", count);
+    });
+    downBtn.addEventListener("click", function () {
+        if (count > 0) {
+            count -= 30;
+            counter.innerHTML = count;
+
+            localStorage.setItem("count", count);
+        }
+    });
+    clearBtn.addEventListener("click", function () {
+        localStorage.clear();
+        count = 0;
+        counter.innerHTML = count;
+    });
 }
+counterButtons();
 
 // Video Embeds
 function backingVideo(backingSrc) {
@@ -299,14 +277,12 @@ function backingVideo(backingSrc) {
     backingVideo.setAttribute('frameborder', '0')
     backingVideo.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture')
     backingVideo.setAttribute('allowfullscreen', '')
-    console.log(backingVideo);
     // Inject dynamically created video into the DOM container
     document.getElementById('backing-track').appendChild(backingVideo)
 }
 
-function bluesBacking(popularSrc) {
+function popularVideo(popularSrc) {
     //clear container element to get ready for new video
-    document.getElementById('bluesVideo').innerHTML = ''
     document.getElementById('popular-song').innerHTML = ''
     // creates iframe
     let popularVideo = document.createElement('iframe')
@@ -317,9 +293,24 @@ function bluesBacking(popularSrc) {
     popularVideo.setAttribute('frameborder', '0')
     popularVideo.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture')
     popularVideo.setAttribute('allowfullscreen', '')
-    console.log(popularVideo);
     // Inject dynamically created video into the DOM container
     document.getElementById('popular-song').appendChild(popularVideo)
+}
+
+function bluesBacking(bluesSrc) {
+    //clear container element to get ready for new video
+    document.getElementById('bluesVideo').innerHTML = ''
+    // creates iframe
+    let bluesVideo = document.createElement('iframe')
+    // create a src attribute on the iframe
+    popularVideo.setAttribute('src', bluesSrc)
+    popularVideo.setAttribute('height', '315')
+    popularVideo.setAttribute('width', '560')
+    popularVideo.setAttribute('frameborder', '0')
+    popularVideo.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture')
+    popularVideo.setAttribute('allowfullscreen', '')
+    // Inject dynamically created video into the DOM container
+    document.getElementById('bluesVideo').appendChild(bluesVideo)
 }
 
 // Youtube API call to get videos for C blues backing track. The function will pull 5 results if successful
@@ -354,18 +345,3 @@ function embedVideo(data) {
     $('#bluesVideo').attr({ 'src': 'https://www.youtube.com/embed/' + data.items[Math.floor(Math.random() * 4) + 1].id.videoId, 'height': '315', 'width': '560' })
 }
 
-
-
-
-
-    // play.addEventListener('click', myPlay);
-    // function myPlay(music){
-    // var audio = new Audio(music);
-    // audio.play();
-    // }
-
-
-    
-    
-// myPlay(keyArray[index].sound)
-//>>>>>>> main

@@ -7,8 +7,6 @@ var headingArray = [
         heading: "Let's Play the Blues",
 
         instructions: "Time to practice some blues! Clicking \"Blues Backing Track\" will dynamically pull a C blues backing track from Youtube."
-
-
     }
 ]
 
@@ -150,7 +148,6 @@ document.getElementById("bluesTab").onclick = function () {
     $("#popular-song").hide();
     $('bluesVideo').show()
     $("#play").hide();
-
 }
 
 var playBlues = document.getElementById("playBlues")
@@ -165,7 +162,6 @@ function playVideo() {
     document.getElementById('backing-track').innerHTML = ''
     document.getElementById("playMe").addEventListener("click", getVideo);
 }
-
 
 document.getElementById("scalesTab").onclick = function () {
     document.getElementById("heading").textContent = headingArray[0].heading;
@@ -185,7 +181,6 @@ document.getElementById("scalesTab").onclick = function () {
     $('#bluesVideo').hide();
     $('#playMe').hide();
     $("#play").show();
-
 }
 
 // generate buttons
@@ -198,15 +193,12 @@ function addButtons(index) {
     keyBtn.innerHTML = keyArray[index].key;
     btnDiv.append(keyBtn);
     buttons.append(btnDiv);
-
-
     keyBtn.addEventListener("click", function () {
         document.getElementById('play').innerHTML = "";
         document.getElementById('figureImage').innerHTML = "";
         displayEl(index);
         backingVideo(keyArray[index].backingUrl);
         popularVideo(keyArray[index].popularUrl);
-
     })
 }
 
@@ -285,7 +277,6 @@ function backingVideo(backingSrc) {
     backingVideo.setAttribute('frameborder', '0')
     backingVideo.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture')
     backingVideo.setAttribute('allowfullscreen', '')
-    console.log(backingVideo);
     // Inject dynamically created video into the DOM container
     document.getElementById('backing-track').appendChild(backingVideo)
 }
@@ -302,26 +293,24 @@ function popularVideo(popularSrc) {
     popularVideo.setAttribute('frameborder', '0')
     popularVideo.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture')
     popularVideo.setAttribute('allowfullscreen', '')
-    console.log(popularVideo);
     // Inject dynamically created video into the DOM container
     document.getElementById('popular-song').appendChild(popularVideo)
 }
-function bluesBacking(popularSrc) {
+
+function bluesBacking(bluesSrc) {
     //clear container element to get ready for new video
     document.getElementById('bluesVideo').innerHTML = ''
-    document.getElementById('popular-song').innerHTML = ''
     // creates iframe
-    let popularVideo = document.createElement('iframe')
+    let bluesVideo = document.createElement('iframe')
     // create a src attribute on the iframe
-    popularVideo.setAttribute('src', popularSrc)
+    popularVideo.setAttribute('src', bluesSrc)
     popularVideo.setAttribute('height', '315')
     popularVideo.setAttribute('width', '560')
     popularVideo.setAttribute('frameborder', '0')
     popularVideo.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture')
     popularVideo.setAttribute('allowfullscreen', '')
-    console.log(popularVideo);
     // Inject dynamically created video into the DOM container
-    document.getElementById('popular-song').appendChild(popularVideo)
+    document.getElementById('bluesVideo').appendChild(bluesVideo)
 }
 
 // Youtube API call to get videos for C blues backing track. The function will pull 5 results if successful
@@ -355,3 +344,4 @@ function getVideo() {
 function embedVideo(data) {
     $('#bluesVideo').attr({ 'src': 'https://www.youtube.com/embed/' + data.items[Math.floor(Math.random() * 4) + 1].id.videoId, 'height': '315', 'width': '560' })
 }
+

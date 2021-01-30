@@ -98,13 +98,25 @@ function bluesChart() {
     var bluesChart = document.getElementById("bluesChart");
     bluesChart.appendChild(chart);
 }
-bluesChart()
+
+var playBlues = document.getElementById("playBlues")
+function bluesButton() {
+    var bluesBtn = document.createElement("a");
+    bluesBtn.className = "button is-info is-rounded";
+    bluesBtn.innerHTML = 'C Blues Backing Track';
+    bluesBtn.id = 'playMe';
+    playBlues.append(bluesBtn);
+}
 
 function pageLoad() {
     document.getElementById("heading").textContent = headingArray[0].heading;
     document.getElementById("instructions").textContent = headingArray[0].instructions;
+    bluesButton();
+    bluesChart()
     $("#bluesChart").hide();
     $('#bluesVideo').hide();
+    $('#playMe').hide();
+    $('#playBlues').hide();
 }
 
 pageLoad();
@@ -129,6 +141,12 @@ function displayEl(index) {
         audio.play()
     }
 }
+function playVideo() {
+    $('#bluesVideo').show();
+    document.getElementById('popular-song').innerHTML = ''
+    document.getElementById('backing-track').innerHTML = ''
+    document.getElementById("playMe").addEventListener("click", getVideo);
+}
 
 // navigation tabs
 document.getElementById("bluesTab").onclick = function () {
@@ -148,19 +166,8 @@ document.getElementById("bluesTab").onclick = function () {
     $("#popular-song").hide();
     $('bluesVideo').show()
     $("#play").hide();
-}
-
-var playBlues = document.getElementById("playBlues")
-function playVideo() {
-    var bluesBtn = document.createElement("a");
-    bluesBtn.className = "button is-info is-rounded";
-    bluesBtn.innerHTML = 'C Blues Backing Track';
-    bluesBtn.id = 'playMe';
-    playBlues.append(bluesBtn);
-    $('#bluesVideo').show();
-    document.getElementById('popular-song').innerHTML = ''
-    document.getElementById('backing-track').innerHTML = ''
-    document.getElementById("playMe").addEventListener("click", getVideo);
+    $('#playMe').show();
+    $('#playBlues').show();
 }
 
 document.getElementById("scalesTab").onclick = function () {
@@ -176,11 +183,10 @@ document.getElementById("scalesTab").onclick = function () {
     $("#bluesChart").hide();
     $("#backing-track").show();
     $("#popular-song").show();
-    $("#youtubeVideo").empty();
-    $("#playMe").empty();
     $('#bluesVideo').hide();
     $('#playMe').hide();
     $("#play").show();
+    $('#playBlues').hide();
 }
 
 // generate buttons

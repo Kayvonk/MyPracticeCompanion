@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="lastfm.api.md5.js"></script>
+    <script type="text/javascript" src="lastfm.api.js"></script>
+    <script type="text/javascript" src="lastfm.api.cache.js"></script>
     <title>Scale Practice</title>
 </head>
 
@@ -16,7 +19,6 @@
             <a class="navbar-link">
                 Modules
             </a>
-
             <div class="navbar-dropdown">
                 <a href="index.html" id="scalesTab" class="navbar-item">
                     Scale Practice
@@ -67,8 +69,24 @@
     <h4 id="popularText" class="is-size-5 level-item has-text-centered"></h4>
     <section id="popular-song" class="level-item has-text-centered">
     </section>
-    <!-- adding div to write video to -->
-
+    <div id="artistName" class="albumInfo level-item has-text-centered is-size-4">
+        <br>
+    </div>
+    <div id="songName" class="albumInfo level-item has-text-centered is-size-4">
+        <br>
+    </div>
+    <div id="albumInfo" class="albumInfo level-item has-text-centered is-size-4">
+        <br>
+    </div>
+    <br>
+    <div class="columns">
+        <div class="column is-2"></div>
+        <div class="column">
+            <div id="artistInfo" class="artistInfo level-item has-text-centered is-size-4">
+            </div>
+        </div>
+        <div class="column is-2"></div>
+    </div>
 
     <div class="is-size-4 has-text-weight-bold has-text-centered"> Minutes spent practicing:
     </div>
@@ -79,5 +97,28 @@
     <script src="script.js">
     </script>
 </body>
+<footer class="footer">
+    <div class="content is-size-5">
+        <p class="has-text-centered">Additional Resources:</p>
+        <div class="columns">
+            <div class="column is-3"></div>
+            <div class="column is-3">
+                <a href="https://www.musictheory.net/ Music Theory Lessons">Musictheory.net</a>
+                <br>
+                <a href="https://www.onlinepianist.com/virtual-piano">Virtual Piano - Online Pianist</a>
+                <br>
+                <a href="https://www.fender.com/online-guitar-tuner">Guitar Tuner - Fender</a>
+            </div>
+            <div class="column is-3">
+                <a href="https://tuner.ninja/ ">Chromatic Tuner – Tuner Ninja</a>
+                <br>
+                <a href="https://www.musicca.com/metronome">Metronome - Musicca</a>
+                <br>
+                <a href="https://www.songsterr.com/">Guitar Tabs - Songsterr</a>
+            </div>
+            <div class="column is-3"></div>
+        </div>
+    </div>
+</footer>
 
 </html>

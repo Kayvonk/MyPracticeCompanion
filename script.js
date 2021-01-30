@@ -1,7 +1,7 @@
 var headingArray = [
     {
         heading: "Scale Practice - A modal approach to playing",
-        instructions: "Using the buttons below, you can practice the different modes associated with the C Major scale. Clicking the play button will play the scale for you. Next, you can have some fun by playing along with any of the available backing tracks. Lastly, check out some music that makes use of each scale.Hope you enjoy your practice!"
+        instructions: "Using the buttons below, you can practice the different modes associated with the C Major scale. Clicking the play button will play the scale for you. Next, you can have some fun by playing along with any of the available backing tracks. Lastly, check out some music that makes use of each scale. Hope you enjoy your practice!"
     },
     {
         heading: "Let's Play the Blues",
@@ -21,6 +21,9 @@ var keyArray = [
         popularText: "C Major in popular music:",
         backingUrl: "https://www.youtube.com/embed/Rk72m9bLrBo",
         popularUrl: "https://www.youtube.com/embed/QxTBtHsh408",
+        artist: "fun.",
+        song: "Some Nights",
+        album: "Some Nights"
     },
     {
         key: "D Dorian",
@@ -31,7 +34,10 @@ var keyArray = [
         backingText: "Backing Track in D Dorian:",
         popularText: "D Dorian in popular music:",
         backingUrl: "https://www.youtube.com/embed/ldIlMNRSUok",
-        popularUrl: "https://www.youtube.com/embed/zz8frWcmthA"
+        popularUrl: "https://www.youtube.com/embed/zz8frWcmthA",
+        artist: "Pink Floyd",
+        song: "Another Brick In The Wall (Part 2)",
+        album: "The Wall"
     },
     {
         key: "E Phrygian",
@@ -42,7 +48,10 @@ var keyArray = [
         backingText: "Backing Track in E Phrygian:",
         popularText: "E Phrygian in popular music:",
         backingUrl: "https://www.youtube.com/embed/i_YV8uxzFac",
-        popularUrl: "https://www.youtube.com/embed/nXrygUZPrII"
+        popularUrl: "https://www.youtube.com/embed/nXrygUZPrII",
+        artist: "Metallica",
+        song: "Wherever I May Roam",
+        album: "Wherever I May Roam"
     },
     {
         key: "F Lydian",
@@ -53,7 +62,10 @@ var keyArray = [
         backingText: "Backing Track in F Lydian:",
         popularText: "F Lydian in popular music:",
         backingUrl: "https://www.youtube.com/embed/NE6wOVqBpEs",
-        popularUrl: "https://www.youtube.com/embed/OnxkfLe4G74"
+        popularUrl: "https://www.youtube.com/embed/OnxkfLe4G74",
+        artist: "Rush",
+        song: "Freewill",
+        album: "Permanent Waves"
     },
     {
         key: "G Mixolydian",
@@ -64,7 +76,10 @@ var keyArray = [
         backingText: "Backing Track in G Mixolydian:",
         popularText: "G Mixolydian in popular music:",
         backingUrl: "https://www.youtube.com/embed/RW5T_OgjJ3k",
-        popularUrl: "https://www.youtube.com/embed/-488UORrfJ0"
+        popularUrl: "https://www.youtube.com/embed/-488UORrfJ0",
+        artist: "Miles Davis",
+        song: "All Blues",
+        album: "Kind of Blue"
     },
     {
         key: "A Aeolian",
@@ -75,7 +90,10 @@ var keyArray = [
         backingText: "Backing Track in A Aeolian:",
         popularText: "A Aeolian in popular music:",
         backingUrl: "https://www.youtube.com/embed/z-nad4pCGus",
-        popularUrl: "https://www.youtube.com/embed/jvRumkRr6Nc"
+        popularUrl: "https://www.youtube.com/embed/jvRumkRr6Nc",
+        artist: "Santana",
+        song: "El Farol",
+        album: "Supernatural"
     },
     {
         key: "B Locrian",
@@ -86,7 +104,10 @@ var keyArray = [
         backingText: "Backing Track in B Locrian:",
         popularText: "B Locrian in popular music:",
         backingUrl: "https://www.youtube.com/embed/aDwr_R5bWY0",
-        popularUrl: "https://www.youtube.com/embed/vjAIZ9wQAnc"
+        popularUrl: "https://www.youtube.com/embed/vjAIZ9wQAnc",
+        artist: "John Kirkpatrick",
+        song: "Dust to Dust",
+        album: "Mazurka Berserker"
     }
 ]
 
@@ -116,7 +137,6 @@ function pageLoad() {
     $("#bluesChart").hide();
     $('#bluesVideo').hide();
     $('#playMe').hide();
-    $('#playBlues').hide();
 }
 
 pageLoad();
@@ -130,6 +150,7 @@ function displayEl(index) {
     document.getElementById("appendIntervals").textContent = keyArray[index].intervals;
     document.getElementById("backingText").textContent = keyArray[index].backingText;
     document.getElementById("popularText").textContent = keyArray[index].popularText;
+
     var playButton = document.createElement("a");
     playButton.className = "button is-primary"
     var playField = document.getElementById("play")
@@ -137,10 +158,56 @@ function displayEl(index) {
     playButton.innerHTML = "Play";
     playButton.addEventListener('click', myPlay);
     function myPlay() {
+
         var audio = new Audio(keyArray[index].sound);
         audio.play()
     }
+    // Lastfm API
+    var cache = new LastFMCache();
+
+    var lastfm = new LastFM({
+        apiKey: 'e87a34cabf1f4a42ef27049fe296a7ae',
+        apiSecret: '0eac8a781de0628d52ffa9b9a5b9f71a',
+        cache: cache
+    });
+
+    lastfm.artist.getInfo({ artist: keyArray[index].artist }, {
+        success: function (data) {
+            artistInfo(data);
+            console.log(data);
+        },
+        error: function (code, message) {
+            console.log(code);
+            console.log(message)
+        }
+    });
+    lastfm.album.getInfo({ artist: keyArray[index].artist, album: keyArray[index].album }, {
+        success: function (data) {
+            albumInfo(data);
+            console.log(data);
+        },
+        error: function (code, message) {
+            console.log(code);
+            console.log(message)
+        }
+    });
+
+    function albumInfo(data) {
+        var artistName = document.getElementById("artistName");
+        artistName.textContent = "Artist: "
+        $('#artistName').append(keyArray[index].artist);
+        var songName = document.getElementById("songName");
+        songName.textContent = "Song: "
+        $('#songName').append(keyArray[index].song);
+        var albumInfo = document.getElementById("albumInfo");
+        albumInfo.textContent = "Album: "
+        $('#albumInfo').append(keyArray[index].album);
+    }
+    function artistInfo(data) {
+        $('#artistInfo').append(data.artist.bio.summary)
+    }
 }
+
 function playVideo() {
     $('#bluesVideo').show();
     document.getElementById('popular-song').innerHTML = ''
@@ -167,7 +234,10 @@ document.getElementById("bluesTab").onclick = function () {
     $('bluesVideo').show()
     $("#play").hide();
     $('#playMe').show();
-    $('#playBlues').show();
+    $("#albumInfo").hide();
+    $("#artistInfo").hide();
+    $("#artistName").hide();
+    $("#songName").hide();
 }
 
 document.getElementById("scalesTab").onclick = function () {
@@ -183,12 +253,13 @@ document.getElementById("scalesTab").onclick = function () {
     $("#bluesChart").hide();
     $("#backing-track").show();
     $("#popular-song").show();
-    // $("#youtubeVideo").empty();
-    // $("#playMe").empty();
     $('#bluesVideo').hide();
     $('#playMe').hide();
     $("#play").show();
-    $('#playBlues').hide();
+    $("#albumInfo").show();
+    $("#artistInfo").show();
+    $("#artistName").show();
+    $("#songName").show();
 }
 
 // generate buttons
@@ -204,6 +275,9 @@ function addButtons(index) {
     keyBtn.addEventListener("click", function () {
         document.getElementById('play').innerHTML = "";
         document.getElementById('figureImage').innerHTML = "";
+        document.getElementById('artistInfo').innerHTML = "";
+        document.getElementById('albumInfo').innerHTML = "";
+        $("#albumInfo").show();
         displayEl(index);
         backingVideo(keyArray[index].backingUrl);
         popularVideo(keyArray[index].popularUrl);
@@ -340,7 +414,6 @@ function getVideo() {
         success: function (data) {
             embedVideo(data);
             console.log(data)
-
         },
         error: function (response) {
             console.log("Request Failed");

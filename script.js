@@ -5,7 +5,7 @@ var headingArray = [
     },
     {
         heading: "Let's Play the Blues",
-        instructions: "The blues is a popular song form which consists of chords which are seen across other genres. The general structure of a blues form consists of dominant 7 chords (1-3-5-b7) based on the root, fourth, and fifth notes of the Major scale. One scale that works over a dominant 7 chord is the mixolydian scale (1-2-3-4-5-6-b7). The last four bars of the blues form are known as the turnaround and can consist of the chords V7– IV7–I7-V7. There are many variations on the blues form, so have fun practicing through some of the available backing tracks. Clicking “C Blues Backing Track” will dynamically pull a video from Youtube that you can play along to."
+        instructions: "The blues is a popular song form that consists of chords which are seen across multiple genres. The general structure of a blues form consists of dominant 7 chords (1-3-5-b7) based on the root, fourth, and fifth notes of the Major scale. One scale that works over a dominant 7 chord is the mixolydian scale (1-2-3-4-5-6-b7). The last four measures of the blues form are known as the turnaround and often consist of the chords V7– IV7–I7-V7. There are many variations on the blues form, so have fun exploring some of the available backing tracks. Clicking “C Blues Backing Track” will dynamically pull a video from Youtube that you can play along to."
     }
 ]
 

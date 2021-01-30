@@ -115,7 +115,7 @@ var keyArray = [
 function bluesChart() {
     var chart = document.createElement("img");
     chart.className = "image";
-    chart.src = "./assets/basic-blues.PNG";
+    chart.src = "./assets/basic-blues.png";
     var bluesChart = document.getElementById("bluesChart");
     bluesChart.appendChild(chart);
 }

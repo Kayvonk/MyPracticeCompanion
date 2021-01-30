@@ -136,6 +136,7 @@ function pageLoad() {
     $("#bluesChart").hide();
     $('#bluesVideo').hide();
     $('#playMe').hide();
+    $('#figureImage').hide();
 }
 
 pageLoad();
@@ -237,6 +238,8 @@ document.getElementById("bluesTab").onclick = function () {
     $("#artistInfo").hide();
     $("#artistName").hide();
     $("#songName").hide();
+    $('#figureImage').hide();
+
 }
 
 document.getElementById("scalesTab").onclick = function () {
@@ -277,6 +280,8 @@ function addButtons(index) {
         document.getElementById('artistInfo').innerHTML = "";
         document.getElementById('albumInfo').innerHTML = "";
         $("#albumInfo").show();
+        $('#figureImage').show();
+        $('#figureImage').show();
         displayEl(index);
         backingVideo(keyArray[index].backingUrl);
         popularVideo(keyArray[index].popularUrl);

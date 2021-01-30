@@ -132,7 +132,7 @@ function pageLoad() {
     document.getElementById("heading").textContent = headingArray[0].heading;
     document.getElementById("instructions").textContent = headingArray[0].instructions;
     bluesButton();
-    bluesChart()
+    bluesChart();
     $("#bluesChart").hide();
     $('#bluesVideo').hide();
     $('#playMe').hide();
@@ -142,6 +142,7 @@ function pageLoad() {
 pageLoad();
 
 function displayEl(index) {
+    albumInfo(index);
     var image = document.createElement("img")
     image.src = keyArray[index].figure
     document.getElementById("figureImage").append(image)
@@ -181,18 +182,8 @@ function displayEl(index) {
             console.log(message)
         }
     });
-    lastfm.album.getInfo({ artist: keyArray[index].artist, album: keyArray[index].album }, {
-        success: function (data) {
-            albumInfo(data);
-            console.log(data);
-        },
-        error: function (code, message) {
-            console.log(code);
-            console.log(message)
-        }
-    });
 
-    function albumInfo(data) {
+    function albumInfo(index) {
         var artistName = document.getElementById("artistName");
         artistName.textContent = "Artist: "
         $('#artistName').append(keyArray[index].artist);
@@ -423,7 +414,6 @@ function getVideo() {
             console.log("Request Failed");
         },
     });
-
 }
 
 function embedVideo(data) {

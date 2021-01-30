@@ -5,7 +5,7 @@ var headingArray = [
     },
     {
         heading: "Let's Play the Blues",
-        instructions: "The blues is a popular song form which consists of chords which are seen across other genres. The general structure of a blues form consists of dominant 7 chords (1-3-5-b7) based on the root, fourth, and fifth notes of the Major scale. One scale that works over a dominant 7 chord is the mixolydian scale (1-2-3-4-5-6-b7). The last four bars of the blues form are known as the turnaround and can consist of the chords V7– IV7–I7-V7. There are many variations on the blues form, so have fun practicing through some of the available backing tracks. Clicking “C Blues Backing Track” will dynamically pull a video from Youtube that you can play along to."
+        instructions: "The blues is a popular song form that consists of chords which are seen across multiple genres. The general structure of a blues form consists of dominant 7 chords (1-3-5-b7) based on the root, fourth, and fifth notes of the Major scale. One scale that works over a dominant 7 chord is the mixolydian scale (1-2-3-4-5-6-b7). The last four measures of the blues form are known as the turnaround and often consist of the chords V7– IV7–I7-V7. There are many variations on the blues form, so have fun exploring some of the available backing tracks. Clicking “C Blues Backing Track” will dynamically pull a video from Youtube that you can play along to."
     }
 ]
 
@@ -132,7 +132,7 @@ function pageLoad() {
     document.getElementById("heading").textContent = headingArray[0].heading;
     document.getElementById("instructions").textContent = headingArray[0].instructions;
     bluesButton();
-    bluesChart()
+    bluesChart();
     $("#bluesChart").hide();
     $('#bluesVideo').hide();
     $('#playMe').hide();
@@ -142,6 +142,7 @@ function pageLoad() {
 pageLoad();
 
 function displayEl(index) {
+    albumInfo(index);
     var image = document.createElement("img")
     image.src = keyArray[index].figure
     document.getElementById("figureImage").append(image)
@@ -181,18 +182,8 @@ function displayEl(index) {
             console.log(message)
         }
     });
-    lastfm.album.getInfo({ artist: keyArray[index].artist, album: keyArray[index].album }, {
-        success: function (data) {
-            albumInfo(data);
-            console.log(data);
-        },
-        error: function (code, message) {
-            console.log(code);
-            console.log(message)
-        }
-    });
 
-    function albumInfo(data) {
+    function albumInfo(index) {
         var artistName = document.getElementById("artistName");
         artistName.textContent = "Artist: "
         $('#artistName').append(keyArray[index].artist);
@@ -423,7 +414,6 @@ function getVideo() {
             console.log("Request Failed");
         },
     });
-
 }
 
 function embedVideo(data) {

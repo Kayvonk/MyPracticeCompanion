@@ -183,8 +183,6 @@ document.getElementById("scalesTab").onclick = function () {
     $("#bluesChart").hide();
     $("#backing-track").show();
     $("#popular-song").show();
-    // $("#youtubeVideo").empty();
-    // $("#playMe").empty();
     $('#bluesVideo').hide();
     $('#playMe').hide();
     $("#play").show();
@@ -352,3 +350,4 @@ function getVideo() {
 function embedVideo(data) {
     $('#bluesVideo').attr({ 'src': 'https://www.youtube.com/embed/' + data.items[Math.floor(Math.random() * 4) + 1].id.videoId, 'height': '315', 'width': '560' })
 }
+

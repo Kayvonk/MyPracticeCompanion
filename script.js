@@ -211,7 +211,7 @@ document.getElementById("bluesTab").onclick = function () {
     playVideo();
     document.getElementById("heading").textContent = headingArray[1].heading;
     document.getElementById("instructions").textContent = headingArray[1].instructions;
-    $("#btnCol").hide();
+    $("#buttons").hide();
     $("#figureImage").hide();
     $("#appendKey").hide();
     $("#appendSteps").hide();
@@ -236,7 +236,7 @@ document.getElementById("bluesTab").onclick = function () {
 document.getElementById("scalesTab").onclick = function () {
     document.getElementById("heading").textContent = headingArray[0].heading;
     document.getElementById("instructions").textContent = headingArray[0].instructions;
-    $("#btnCol").show();
+    $("#buttons").show();
     $("#figureImage").show();
     $("#appendKey").show();
     $("#appendSteps").show();
@@ -256,7 +256,7 @@ document.getElementById("scalesTab").onclick = function () {
 }
 
 // generate buttons
-var buttons = document.getElementById("btnCol")
+var buttons = document.getElementById("buttons")
 function addButtons(index) {
     var btnDiv = document.createElement("div");
     btnDiv.className = "field";

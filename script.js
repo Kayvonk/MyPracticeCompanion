@@ -163,6 +163,7 @@ function displayEl(index) {
         var audio = new Audio(keyArray[index].sound);
         audio.play()
     }
+
     // Lastfm API
     var cache = new LastFMCache();
 
@@ -234,20 +235,6 @@ document.getElementById("bluesTab").onclick = function () {
 document.getElementById("scalesTab").onclick = function () {
     document.getElementById("heading").textContent = headingArray[0].heading;
     document.getElementById("instructions").textContent = headingArray[0].instructions;
-    $("#buttons").show();
-    $("#figureImage").show();
-    $("#appendKey").show();
-    $("#appendSteps").show();
-    $("#appendIntervals").show();
-    $("#backingText").show();
-    $("#popularText").show();
-    $("#backing-track").show();
-    $("#popular-song").show();
-    $("#play").show();
-    $("#albumInfo").show();
-    $("#artistInfo").show();
-    $("#artistName").show();
-    $("#songName").show();
 }
 
 // generate buttons

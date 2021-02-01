@@ -123,8 +123,8 @@ var playBlues = document.getElementById("playBlues")
 function bluesButton() {
     var bluesBtn = document.createElement("a");
     bluesBtn.className = "button is-info is-rounded";
-    bluesBtn.innerHTML = 'C Blues Backing Track';
-    bluesBtn.id = 'playMe';
+    bluesBtn.innerHTML = "C Blues Backing Track";
+    bluesBtn.id = "playMe";
     playBlues.append(bluesBtn);
 }
 
@@ -134,9 +134,9 @@ function pageLoad() {
     bluesButton();
     bluesChart();
     $("#bluesChart").hide();
-    $('#bluesVideo').hide();
-    $('#playMe').hide();
-    $('#figureImage').hide();
+    $("#bluesVideo").hide();
+    $("#playMe").hide();
+    $("#figureImage").hide();
 }
 
 pageLoad();
@@ -200,10 +200,10 @@ function displayEl(index) {
 }
 
 function playVideo() {
-    $('#bluesVideo').show();
-    document.getElementById('popular-song').innerHTML = ''
-    document.getElementById('backing-track').innerHTML = ''
-    document.getElementById("playMe").addEventListener("click", getVideo);
+    $("#bluesVideo").show();
+    document.getElementById("popular-song").innerHTML = ''
+    document.getElementById("backing-track").innerHTML = ''
+    document.getElementById("playMe").addEventListener('click', getVideo);
 }
 
 // navigation tabs
@@ -222,15 +222,13 @@ document.getElementById("bluesTab").onclick = function () {
     $("#blues-backing").show();
     $("#backing-track").hide();
     $("#popular-song").hide();
-    $('bluesVideo').show()
     $("#play").hide();
-    $('#playMe').show();
+    $("#playMe").show();
     $("#albumInfo").hide();
     $("#artistInfo").hide();
     $("#artistName").hide();
     $("#songName").hide();
-    $('#figureImage').hide();
-
+    $("#figureImage").hide();
 }
 
 document.getElementById("scalesTab").onclick = function () {
@@ -243,11 +241,8 @@ document.getElementById("scalesTab").onclick = function () {
     $("#appendIntervals").show();
     $("#backingText").show();
     $("#popularText").show();
-    $("#bluesChart").hide();
     $("#backing-track").show();
     $("#popular-song").show();
-    $('#bluesVideo').hide();
-    $('#playMe').hide();
     $("#play").show();
     $("#albumInfo").show();
     $("#artistInfo").show();
@@ -266,13 +261,13 @@ function addButtons(index) {
     btnDiv.append(keyBtn);
     buttons.append(btnDiv);
     keyBtn.addEventListener("click", function () {
-        document.getElementById('play').innerHTML = "";
-        document.getElementById('figureImage').innerHTML = "";
-        document.getElementById('artistInfo').innerHTML = "";
-        document.getElementById('albumInfo').innerHTML = "";
+        document.getElementById("play").innerHTML = "";
+        document.getElementById("figureImage").innerHTML = "";
+        document.getElementById("artistInfo").innerHTML = "";
+        document.getElementById("albumInfo").innerHTML = "";
         $("#albumInfo").show();
-        $('#figureImage').show();
-        $('#figureImage').show();
+        $("#figureImage").show();
+        $("#figureImage").show();
         displayEl(index);
         backingVideo(keyArray[index].backingUrl);
         popularVideo(keyArray[index].popularUrl);
@@ -319,21 +314,21 @@ function counterButtons(index) {
         counter.innerHTML = count;
     });
 
-    upBtn.addEventListener("click", function () {
+    upBtn.addEventListener('click', function () {
         count += 30;
         counter.innerHTML = count;
 
-        localStorage.setItem("count", count);
+        localStorage.setItem('count', count);
     });
-    downBtn.addEventListener("click", function () {
+    downBtn.addEventListener('click', function () {
         if (count > 0) {
             count -= 30;
             counter.innerHTML = count;
 
-            localStorage.setItem("count", count);
+            localStorage.setItem('count', count);
         }
     });
-    clearBtn.addEventListener("click", function () {
+    clearBtn.addEventListener('click', function () {
         localStorage.clear();
         count = 0;
         counter.innerHTML = count;

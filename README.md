@@ -1,5 +1,8 @@
 # MyPracticeCompanion
 
+DEPLOYMENT
+https://kayvonk.github.io/MyPracticeCompanion/
+
 ![](https://media.giphy.com/media/VBpWNzYAezKdllZOYZ/giphy.gif) 
 
 
